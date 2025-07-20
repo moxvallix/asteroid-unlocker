@@ -10,12 +10,12 @@ base {
 
 repositories {
     maven {
-        name = "meteor-maven"
-        url = uri("https://maven.meteordev.org/releases")
-    }
-    maven {
-        name = "meteor-maven-snapshots"
-        url = uri("https://maven.meteordev.org/snapshots")
+        name = "modrinth"
+        url = uri("https://api.modrinth.com/maven")
+
+        content {
+            includeGroup("maven.modrinth")
+        }
     }
 }
 
@@ -26,7 +26,9 @@ dependencies {
     modImplementation("net.fabricmc:fabric-loader:${properties["loader_version"] as String}")
 
     // Meteor
-    modImplementation("meteordevelopment:meteor-client:${properties["minecraft_version"] as String}-SNAPSHOT")
+    modImplementation("maven.modrinth:asteroid:${properties["asteroid_version"] as String}")
+
+    implementation("com.google.code.gson:gson:2.13.1")
 }
 
 tasks {
